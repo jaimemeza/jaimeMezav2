@@ -143,9 +143,9 @@ span .fa-bars {
 
 @media (min-width: 1200px) {}
 
-#Home .blur {
+.blur {
     position: absolute;
-    background: #000000cc;
+    background: #000000bc!important;
     height: 85vh;
     border: 0;
     width: 100vw;
