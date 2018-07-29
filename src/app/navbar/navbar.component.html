@@ -1,0 +1,176 @@
+<!-- Navbar component -->
+<nav id="navbar" class="navbar navbar-expand-lg">
+  <img src="./assets/img/logogray3.png" class="navbar-brand mx-5 py-0" routerLink="/main">
+  <button class="navbar-toggler rounded" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav"
+    aria-expanded="false" aria-label="Toggle navigation">
+    <span class="">
+      <i class="fas fa-bars"></i>
+    </span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav ml-auto">
+      <li class="nav-item ml-auto" *ngFor="let navItem of navItems; let i = index">
+        <a class="nav-link nav-hover" (click)="navTo(i)">{{ navItem }}</a>
+        <!-- <div class="border w-100"></div> -->
+      </li>
+
+    </ul>
+  </div>
+</nav>
+
+<!-- Social media component -->
+<div class="icon-bar">
+  <a target="_blank" href="https://github.com/jaimemeza" class="github">
+    <i class="fab fa-github"></i>
+  </a>
+  <br>
+  <a target="_blank" href="mailto:hello@jaimemeza.com?subject=Hello Jaime" class="contact">
+    <i class="far fa-envelope"></i>
+  </a>
+  <br>
+  <a target="_blank" href="https://www.linkedin.com/in/jaimemeza/" class="linkedin">
+    <i class="fab fa-linkedin-in"></i>
+  </a>
+  <br>
+</div>
+<!-- Home component -->
+<div id="Home"  [@routerTransition]="isAnimate[0]" class="container-fluid mx-0 px-0">
+  <div class="row mx-0" style="background-image: url(assets/img/backgroundm.jpg)">
+    <div class="blur">
+      <div class="col-xs-12 col-sm-12 col-md-10 offset-md-1 text-center justify-content-center">
+        <img class="img-fluid img-top img-me rounded-circle" src="./assets/img/me.png">
+        <h1 class="block display-4 head-text py-3">Hi, I'm Jaime Meza</h1>
+
+      </div>
+    </div>
+    <div class="align-self-end">
+      <img class=" img-fluid wave" src="assets/img/banner-wave-2.png" alt="">
+    </div>
+  </div>
+</div>
+
+<!-- Skills component -->
+<div id="Skills" [@routerTransition]="isAnimate[1]" class="container my-4 py-5">
+  <div class="row">
+    <div class="col-12 mb-0 pt-3 text-center">
+      <h1 class="display-4 mb-0 text-primary">Jaime Meza</h1>
+      <hr>
+      <h6 class="text-secondary">Full Stack Developer</h6>
+    </div>
+  </div>
+  <div class="row row-eq-height my-5">
+    <div class="block col-md-4 offset-md-1">
+      <h5>Soft Skills</h5>
+      <div *ngFor="let skill of sSkills" class="block progress-item">
+        <div class="progress-title">{{ skill.name}}</div>
+        <div class="progress">
+          <div [id]="skill.name" class="progress-bar progress-bar-brand"  role="progressbar" aria-valuemin="0" aria-valuemax="100"style="width: 0;">
+            <span class="pb-number-box" style="opacity: 1;">
+              <span class="pb-number">{{ skill.temp }}</span>%</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="block col-md-4 offset-md-2">
+      <h5>Technical Skills</h5>
+      <div *ngFor="let skill of tSkills" class="block progress-item">
+        <div class="progress-title">{{ skill.name}}</div>
+        <div class="progress">
+          <div [id]="skill.name" class="progress-bar progress-bar-brand"  role="progressbar" aria-valuemin="0" aria-valuemax="100"style="width: 0;">
+            <span class="pb-number-box" style="opacity: 1;">
+              <span class="pb-number">{{ skill.temp }}</span>%</span>
+          </div>
+        </div>
+      </div>
+     
+      
+      
+     
+    </div>
+  </div>
+
+
+</div>
+
+<!-- Transition from skills and porfolio -->
+<div class="" style="padding:0;margin-left:calc( (100vw - 100% ) / -2  );margin-right:calc( (100vw - 100% ) / -2   );">
+  <svg class="slantCandy" xmlns="http://www.w3.org/2000/svg" version="1.1" width="100%" height="120" viewBox="0 0 100 102"
+    preserveAspectRatio="none" style="fill:#047aff;padding:0;margin-bottom:-3px;display:block">
+    <path d="M100 100 L-2 0 L0 100 Z"></path>
+  </svg>
+</div>
+
+<!-- Portfolio component -->
+<div id="Portfolio" [@routerTransition]="isAnimate[2]" class="container-fluid m-0 px-0 py-4">
+  <div class="row top-row justify-content-center py-0 mx-sm-1 mx-xs-2 mx-lg-5">
+    <h1 class="display-4 mb-3 mr-auto text-white font-weight-bold">
+      <strong>Projects</strong>
+    </h1>
+    <div *ngFor="let portfolio of portfolios; index as i" [ngClass]="{'col-md-10 order-1': portfolio.show == true, 'order-12 col-xl-2 col-lg-3 col-md-4': portfolio.show == false}"
+      class="block card mx-2 mx-sm-2 mx-lg-4 mb-4">
+      <div id="{{ portfolio.id }}" class="row" href="#Portfolio" (click)="showMore(i)">
+        <div [ngClass]="{'col-md-3': portfolio.show == true, 'col-md-12': portfolio.show == false}" class=" m-auto">
+          <h5 *ngIf="portfolio.show == false" class="my-3 text-center text-primary">
+            <strong>{{ portfolio.title1 }}
+              <span class="text-secondary">{{ portfolio.title2 }}</span>
+            </strong>
+          </h5>
+          <img src="{{ portfolio.img }}" class="my-sm-0  w-100">
+        </div>
+        <div [ngClass]="{'d-none': portfolio.show == false}" class="col-md-9 px-3">
+          <div class="card-block px-3">
+            <h3 class="card-title my-3 text-primary">
+              <strong>{{ portfolio.title1 }}
+                <span class="text-secondary">{{ portfolio.title2 }}</span>
+              </strong>
+            </h3>
+            <p class="mx-md-2 card-text">{{ portfolio.text1 }}</p>
+            <p class="mx-md-2 card-text">{{ portfolio.text2 }}</p>
+            <a target="_blank" href="{{ portfolio.href }}" class="mx-md-2 btn btn-primary mb-md-3 mb-sm-3">Try it</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Transition from portfolio and about -->
+<div class="bg-about" style="padding:0;margin-left:calc( (100vw - 100% ) / -2  );margin-right:calc( (100vw - 100% ) / -2   );">
+  <svg class="slantCandy" xmlns="http://www.w3.org/2000/svg" version="1.1" width="100%" height="120" viewBox="0 0 100 102"
+    preserveAspectRatio="none" style="fill:#047aff;padding:0;margin-bottom:-3px;display:block">
+    <path d="M100 0 L0 0 100 100 Z"></path>
+  </svg>
+</div>
+
+<!-- About component -->
+<div id="About"  [@routerTransition]="isAnimate[3]" class="container-fluid bg-about">
+  <div class="row row-eq-height py-3 ">
+    <div class="col-lg-4 col-xl-4 offset-lg-1 offset-xl-1 d-flex justify-content-center align-items-center">
+      <img class="img-fluid  box-container rounded " alt="Responsive image" src="./assets/img/background.png" alt="">
+    </div>
+    <div class="col-lg-6 my-4 ">
+      <h1 class="block my-2 text-primary font-weight-bold">
+        <strong>ABOUT
+          <span class="text-secondary">ME </span>
+        </strong>
+      </h1>
+      <p class="block px-lg-2 pt-1 px-md-5 text-secondary">Ever since I was a kid, I loved math. This led to being introduced to programming in high school with the language
+        'Basic', with which I immediately hooked. In college, I learned QBasic, Pascal, Assembler, C+, and Visual Basic,
+        with no preference of one over the other.</p>
+      <p class="block px-lg-2 px-md-5 text-secondary">
+        When I finished college, I began to focus on another branch of computer science, Networking. I started working in a telecommunications
+        company where I learned about routers, switches, access points, fiber optic, and structured cable. When my time with
+        them was over, I began to freelance, which led to a struggle with the consistency of contracts.</p>
+      <p class="block px-lg-2 px-md-5 text-secondary">
+        Being forced out of my comfort zone, I decided to return to working in the telecommunications sector after about two and
+        a half years away. I would install access control, security cameras, set up the camera servers, paging systems, structure
+        cabling, and some service calls.</p>
+      <p class="block px-lg-2 pb-1 px-md-5 text-secondary">
+        One day I saw a banner for a full-stack developer bootcamp and my passion for programming came back!!</p>
+    </div>
+  </div>
+</div>
+
+<div id="Footer" class="container-fluid bg-dark text-center text-white py-lg-2 py-md-1 position-sticky">
+<span>Copyright © 2018 Jaime Meza</span>
+</div>
